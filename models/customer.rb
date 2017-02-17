@@ -12,7 +12,7 @@ class Customer
   end
 
   def save
-    sql = "INSERT INTO customers (name, funds) VALUE ('#{@name}', #{funds}) RETURNING id"
+    sql = "INSERT INTO customers (name, funds) VALUE ('#{@name}', #{@funds}) RETURNING id"
     customer = SqlRunner.run(sql).first
     @id = customer['id'].to_i
   end

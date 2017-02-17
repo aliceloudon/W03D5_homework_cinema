@@ -11,6 +11,16 @@ class Ticket
     @film_id = options['film_id'].to_i    
   end
 
+  def save
+    sql = "INSERT INTO tickets (customer_id, film_id) VALUE (#{@customer_id}, #{@film_id}) RETURNING id"
+    ticket = SqlRunner.run(sql).first
+    @id = ticket['id'].to_i
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM tickets"
+    SqlRunner.run(sql)
+  end
 
 
 end
