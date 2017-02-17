@@ -11,6 +11,15 @@ class Customer
     @funds = options['funds'].to_i    
   end
 
+  def save
+    sql = "INSERT INTO customers (name, funds) VALUE ('#{@name}', #{funds}) RETURNING id"
+    customer = SqlRunner.run(sql).first
+    @id = customer['id'].to_i
+  end
 
+  def self.delete_all
+    sql = "DELETE FROM customers"
+    SqlRunner.run(sql)
+  end
 
 end
