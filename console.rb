@@ -30,3 +30,6 @@ ticket3 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
 ticket1.save
 ticket2.save
 ticket3.save
+
+binding.pry
+nil
