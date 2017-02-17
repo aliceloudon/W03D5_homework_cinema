@@ -17,6 +17,11 @@ class Customer
     @id = customer['id'].to_i
   end
 
+  def update
+    sql ="UPDATE customers set (name, funds) = ('#{@name}', #{@funds}) WHERE id =#{@id};"
+    SqlRunner.run(sql)
+  end
+
   def self.all()
     sql = "SELECT * FROM customers"
     return self.get_many(sql)
@@ -43,6 +48,12 @@ class Customer
           INNER JOIN tickets ON film_id = films.id
           WHERE customer_id = #{@id}"
     return Film.get_many(sql)
+  end
+
+  def tickets
+    sql = "SELECT * FROM tickets WHERE customer_id = #{@id}"
+    result = SqlRunner.run(sql)
+    return result.map {|ticket| Ticket.new(ticket)}
   end
 
 end
