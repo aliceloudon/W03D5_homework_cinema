@@ -49,5 +49,11 @@ class Film
           WHERE film_id = #{@id}"
     return Customer.get_many(sql)
   end
+  
+  def self.find_by_id(search_id)
+    sql = "SELECT * FROM films where id = #{search_id};"
+    film = SqlRunner.run(sql).first
+    return Film.new(film)
+  end
 
 end

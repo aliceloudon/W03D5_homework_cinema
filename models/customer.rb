@@ -56,4 +56,21 @@ class Customer
     return result.map {|ticket| Ticket.new(ticket)}
   end
 
+  def buy_ticket(customer, film)
+    funds = (customer.funds - film.price)
+    update
+  end
+
+    # def update
+    #   sql ="UPDATE customers set (name, funds) = ('#{@name}', #{@funds}) WHERE id =#{@id};"
+    #   SqlRunner.run(sql)
+    # end
+
+# when I enter ticket4 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id})
+# I want to automatically:
+# customer1.funds = (customer1.funds - film1.price)
+# customer1.update
+# So the two arguments I want to enter are CUSTOMER and FILM
+
+
 end
